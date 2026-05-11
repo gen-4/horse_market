@@ -33,3 +33,13 @@ target/
 *.db
 *.sqlite
 *sqlite3
+
+# VSCODE
+.vscode/
+
+# MISC
+.classpath
+.factorypath
+.project
+.settings/
+.metals/
