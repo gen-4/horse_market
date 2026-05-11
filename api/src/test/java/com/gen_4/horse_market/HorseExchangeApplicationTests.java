@@ -1,10 +1,10 @@
-package com.gen_4.horse_exchange;
+package com.gen_4.horse_market;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HorseExchangeApplicationTests {
+class HorseMarketApplicationTests {
 
 	@Test
 	void contextLoads() {

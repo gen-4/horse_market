@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.models.user;
+package com.gen_4.horse_market.models.user;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "exchange_user")
+@Table(name = "market_user")
 public class User {
 
 	@Id

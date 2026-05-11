@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.configuration;
+package com.gen_4.horse_market.configuration;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.RequiredArgsConstructor;
 
-import com.gen_4.horse_exchange.models.user.RoleOptions;
+import com.gen_4.horse_market.models.user.RoleOptions;
 
 
 

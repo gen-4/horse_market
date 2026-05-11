@@ -1,6 +1,6 @@
-package com.gen_4.horse_exchange.dtos.auth;
+package com.gen_4.horse_market.dtos.auth;
 
-import com.gen_4.horse_exchange.dtos.user.UserDto;
+import com.gen_4.horse_market.dtos.user.UserDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

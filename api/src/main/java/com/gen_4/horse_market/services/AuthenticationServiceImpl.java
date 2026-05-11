@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.services;
+package com.gen_4.horse_market.services;
 
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -8,15 +8,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-// import com.gen_4.horse_exchange.exceptions.DuplicatedEntityException;
-// import com.gen_4.horse_exchange.exceptions.NotFoundException;
-// import com.gen_4.horse_exchange.exceptions.UnauthorizedException;
-// import com.gen_4.horse_exchange.exceptions.WrongParametersException;
-import com.gen_4.horse_exchange.models.user.Role;
-import com.gen_4.horse_exchange.models.user.RoleOptions;
-import com.gen_4.horse_exchange.models.user.User;
-import com.gen_4.horse_exchange.repositories.RoleRepository;
-import com.gen_4.horse_exchange.repositories.UserRepository;
+// import com.gen_4.horse_market.exceptions.DuplicatedEntityException;
+// import com.gen_4.horse_market.exceptions.NotFoundException;
+// import com.gen_4.horse_market.exceptions.UnauthorizedException;
+// import com.gen_4.horse_market.exceptions.WrongParametersException;
+import com.gen_4.horse_market.models.user.Role;
+import com.gen_4.horse_market.models.user.RoleOptions;
+import com.gen_4.horse_market.models.user.User;
+import com.gen_4.horse_market.repositories.RoleRepository;
+import com.gen_4.horse_market.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,6 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final PasswordEncoder passwordEncoder;
 
+    @Override
     public User register(String username, String password) {
         // throws NotFoundException, WrongParametersException, DuplicatedEntityException {
         User user = null;
@@ -67,6 +68,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return user;
     }
 
+    @Override
     public User login(String username, String password) {
         // throws NotFoundException, WrongParametersException, UnauthorizedException {
         Optional<User> optionalUser;
@@ -89,6 +91,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return user;
     }
 
+    @Override
     public User loginWithToken(long userId) {
         // throws NotFoundException, UnauthorizedException {
 

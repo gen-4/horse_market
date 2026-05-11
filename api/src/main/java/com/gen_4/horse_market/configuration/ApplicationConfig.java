@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.configuration;
+package com.gen_4.horse_market.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

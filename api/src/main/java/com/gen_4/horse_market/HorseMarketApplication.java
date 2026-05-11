@@ -1,13 +1,13 @@
-package com.gen_4.horse_exchange;
+package com.gen_4.horse_market;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HorseExchangeApplication {
+public class HorseMarketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HorseExchangeApplication.class, args);
+		SpringApplication.run(HorseMarketApplication.class, args);
 	}
 
 }

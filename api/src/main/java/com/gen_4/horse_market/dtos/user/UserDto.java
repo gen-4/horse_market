@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.dtos.user;
+package com.gen_4.horse_market.dtos.user;
 
 import java.util.List;
 

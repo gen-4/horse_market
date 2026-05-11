@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.controllers;
+package com.gen_4.horse_market.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

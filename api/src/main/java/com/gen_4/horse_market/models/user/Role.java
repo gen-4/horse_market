@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.models.user;
+package com.gen_4.horse_market.models.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "exchange_role")
+@Table(name = "market_role")
 public class Role {
 
 	@Id

@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.controllers;
+package com.gen_4.horse_market.controllers;
 
 import java.util.stream.Collectors;
 
@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gen_4.horse_exchange.dtos.auth.AuthenticationResponseDto;
-import com.gen_4.horse_exchange.dtos.user.RoleDto;
-import com.gen_4.horse_exchange.dtos.user.UserDto;
-// import com.gen_4.horse_exchange.exceptions.DuplicatedEntityException;
-// import com.gen_4.horse_exchange.exceptions.NotFoundException;
-// import com.gen_4.horse_exchange.exceptions.UnauthorizedException;
-// import com.gen_4.horse_exchange.exceptions.WrongParametersException;
-import com.gen_4.horse_exchange.models.user.User;
-import com.gen_4.horse_exchange.services.AuthenticationService;
-import com.gen_4.horse_exchange.configuration.JwtInfo;
-import com.gen_4.horse_exchange.configuration.JwtService;
-import com.gen_4.horse_exchange.dtos.auth.AuthenticationRequestDto;
+import com.gen_4.horse_market.dtos.auth.AuthenticationResponseDto;
+import com.gen_4.horse_market.dtos.user.RoleDto;
+import com.gen_4.horse_market.dtos.user.UserDto;
+// import com.gen_4.horse_market.exceptions.DuplicatedEntityException;
+// import com.gen_4.horse_market.exceptions.NotFoundException;
+// import com.gen_4.horse_market.exceptions.UnauthorizedException;
+// import com.gen_4.horse_market.exceptions.WrongParametersException;
+import com.gen_4.horse_market.models.user.User;
+import com.gen_4.horse_market.services.AuthenticationService;
+import com.gen_4.horse_market.configuration.JwtInfo;
+import com.gen_4.horse_market.configuration.JwtService;
+import com.gen_4.horse_market.dtos.auth.AuthenticationRequestDto;
 
 import lombok.RequiredArgsConstructor;
 

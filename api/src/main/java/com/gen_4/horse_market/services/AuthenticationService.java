@@ -1,6 +1,6 @@
-package com.gen_4.horse_exchange.services;
+package com.gen_4.horse_market.services;
 
-import com.gen_4.horse_exchange.models.user.User;
+import com.gen_4.horse_market.models.user.User;
 
 public interface AuthenticationService {
 

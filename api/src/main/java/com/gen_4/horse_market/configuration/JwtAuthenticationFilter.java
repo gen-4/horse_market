@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.configuration;
+package com.gen_4.horse_market.configuration;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,8 +24,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 
-import com.gen_4.horse_exchange.models.user.User;
-import com.gen_4.horse_exchange.repositories.UserRepository;
+import com.gen_4.horse_market.models.user.User;
+import com.gen_4.horse_market.repositories.UserRepository;
 
 
 

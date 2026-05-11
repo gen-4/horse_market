@@ -1,4 +1,4 @@
-package com.gen_4.horse_exchange.configuration;
+package com.gen_4.horse_market.configuration;
 
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.gen_4.horse_exchange.models.user.RoleOptions;
+import com.gen_4.horse_market.models.user.RoleOptions;
 
 
 
