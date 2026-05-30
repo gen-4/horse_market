@@ -17,11 +17,21 @@ public class HorseDtoConversor {
             .description(horse.getDescription())
             .height(horse.getHeight())
             .weight(horse.getWeight())
+            .isActive(horse.isActive())
             .build();
     }
 
     public List<HorseDto> toHorsesDto(List<Horse> horses) {
         return horses.stream().map(horse -> toHorseDto(horse)).collect(Collectors.toList());
+    }
+
+    public Horse toHorse(HorseDto horseDto) {
+        return Horse.builder()
+            .name(horseDto.getName())
+            .description(horseDto.getDescription())
+            .height(horseDto.getHeight())
+            .weight(horseDto.getWeight())
+            .build();
     }
 
 }

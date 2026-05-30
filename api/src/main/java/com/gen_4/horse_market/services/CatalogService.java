@@ -7,7 +7,7 @@ import com.gen_4.horse_market.models.catalog.Criteria;
 
 public interface CatalogService {
 
-    public Horse createHorses();
+    public Horse createHorses(Horse horse);
   
     public List<Horse> getHorses(Criteria criteria);
     

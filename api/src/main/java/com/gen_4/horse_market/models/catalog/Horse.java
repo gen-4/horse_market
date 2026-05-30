@@ -2,6 +2,7 @@ package com.gen_4.horse_market.models.catalog;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Horse {
     private float weight;
 
     @ColumnDefault("true")
+    @Column(nullable = false)
     private boolean isActive;
     
 }

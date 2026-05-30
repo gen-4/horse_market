@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,11 +27,13 @@ public class CatalogController {
     private final CatalogService catalogService;
   
     @PostMapping("horse")
-    public ResponseEntity<HorseDto> createHorse() {
+    public ResponseEntity<HorseDto> createHorse(
+        @RequestBody HorseDto horseDto
+    ) {
         Horse horse;
         HorseDtoConversor conversor = new HorseDtoConversor();
         
-        horse = catalogService.createHorses();
+        horse = catalogService.createHorses(conversor.toHorse(horseDto));
         return ResponseEntity.created(URI.create("/horse/" + horse.getId()))
             .body(conversor.toHorseDto(horse));
     }

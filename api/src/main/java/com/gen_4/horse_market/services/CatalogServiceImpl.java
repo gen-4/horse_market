@@ -18,11 +18,7 @@ public class CatalogServiceImpl implements CatalogService {
     private final HorseRepository horseRepository;
 
     @Override
-    public Horse createHorses() {
-        Horse horse;
-        horse = Horse.builder()
-            .build(); // TODO: Complete this
-
+    public Horse createHorses(Horse horse) {
         horseRepository.save(horse);
 
         return horse;
