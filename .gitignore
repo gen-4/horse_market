@@ -43,3 +43,6 @@ target/
 .project
 .settings/
 .metals/
+
+# METALS
+.bloop/

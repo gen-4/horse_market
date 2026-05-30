@@ -50,6 +50,7 @@ public class JwtService {
             .compact();
     }
 
+    @SuppressWarnings("deprecation")
     private Claims extractAllClaims(String token) {
         return Jwts
             .parser()
@@ -67,6 +68,7 @@ public class JwtService {
     public JwtInfo getInfo(String token) {
 
 		Claims claims = extractAllClaims(token);
+        @SuppressWarnings("unchecked")
         List<String> roles = (List<String>) claims.get("roles");
 
 		return JwtInfo.builder()
