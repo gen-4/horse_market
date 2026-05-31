@@ -7,6 +7,7 @@ import jakarta.servlet.FilterChain;
 
 import lombok.RequiredArgsConstructor;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -28,7 +29,7 @@ import com.gen_4.horse_market.models.user.User;
 import com.gen_4.horse_market.repositories.UserRepository;
 
 
-
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -77,14 +78,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 									.map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
 									.collect(Collectors.toSet())));
 
-		// TODO: Log these errors
 		} catch (ExpiredJwtException e) {
+			log.warn("Token has expired");
 			handleException(response, "Token has expired", HttpServletResponse.SC_FORBIDDEN);
 			return;
 		} catch (JwtException e) {
+			log.error("Invalid JWT token", e);
 			handleException(response, "Invalid JWT token", HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		} catch (Exception e) {
+			log.error("An error occurred during token processing", e);
 			handleException(response, "An error occurred during token processing",
 					HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return;
