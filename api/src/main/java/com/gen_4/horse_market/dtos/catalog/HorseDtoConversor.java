@@ -1,7 +1,6 @@
 package com.gen_4.horse_market.dtos.catalog;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 
 import com.gen_4.horse_market.models.catalog.Horse;
 
@@ -21,8 +20,8 @@ public class HorseDtoConversor {
             .build();
     }
 
-    public List<HorseDto> toHorsesDto(List<Horse> horses) {
-        return horses.stream().map(horse -> toHorseDto(horse)).collect(Collectors.toList());
+    public Page<HorseDto> toHorsesDto(Page<Horse> horses) {
+        return horses.map(horse -> toHorseDto(horse));
     }
 
     public Horse toHorse(HorseDto horseDto) {

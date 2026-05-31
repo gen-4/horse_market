@@ -1,8 +1,9 @@
 package com.gen_4.horse_market.services;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,8 +62,17 @@ public class CatalogServiceImpl implements CatalogService {
     }
   
     @Override
-    public List<Horse> getHorses(Criteria criteria) {
-        return horseRepository.findAll(); // TODO: Complete this
+    public Page<Horse> getHorses(Criteria criteria, Pageable pageable) {
+        return horseRepository.search(
+            criteria.getMinWeight(),
+            criteria.getMaxWeight(),
+            criteria.getMinHeight(),
+            criteria.getMaxHeight(),
+            criteria.getMinPrice(),
+            criteria.getMaxPrice(),
+            criteria.getDescription(),
+            pageable
+        );
     }
 
 }

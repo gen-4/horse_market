@@ -1,6 +1,7 @@
 package com.gen_4.horse_market.services;
 
-import java.util.List;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 
 import com.gen_4.horse_market.models.catalog.Horse;
 import com.gen_4.horse_market.models.catalog.Criteria;
@@ -11,6 +12,6 @@ public interface CatalogService {
   
     public void deleteHorse(long userId, long horseId);
     
-    public List<Horse> getHorses(Criteria criteria);
+    public Page<Horse> getHorses(Criteria criteria, Pageable pageable);
     
 }

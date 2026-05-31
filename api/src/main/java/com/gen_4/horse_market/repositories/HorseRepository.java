@@ -2,9 +2,12 @@ package com.gen_4.horse_market.repositories;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gen_4.horse_market.models.catalog.Horse;
@@ -22,5 +25,30 @@ public interface HorseRepository extends JpaRepository<Horse, Long> {
         AND h.owner.id = :userId
     """)
     int deleteByIdAndOwnerId(long horseId, long ownerId);
+
+    @Query(value = """
+        SELECT *
+        FROM horse h
+        WHERE (:minWeight IS NULL OR h.weight >= :minWeight)
+        AND (:maxWeight IS NULL OR h.weight <= :maxWeight)
+        AND (:minHeight IS NULL OR h.weight >= :minHeight)
+        AND (:maxHeight IS NULL OR h.weight <= :maxHeight)
+        AND (
+            :description IS NULL OR
+            to_tsvector('english', h.description)
+            @@ plainto_tsquery('english', :description)
+        )
+    """,
+    nativeQuery = true)
+    Page<Horse> search(
+        @Param("minWeight") Float minWeight,
+        @Param("maxWeight") Float maxWeight,
+        @Param("minHeight") Float minHeight,
+        @Param("maxHeight") Float maxHeight,
+        @Param("minPrice") Double minPrice,
+        @Param("maxPrice") Double maxPrice,
+        @Param("description") String description,
+        Pageable pageable
+    );
     
 }

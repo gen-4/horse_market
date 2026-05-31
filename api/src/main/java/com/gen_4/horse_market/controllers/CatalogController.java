@@ -1,8 +1,9 @@
 package com.gen_4.horse_market.controllers;
 
 import java.net.URI;
-import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,11 +53,13 @@ public class CatalogController {
     }
 
     @GetMapping("horses")
-    public ResponseEntity<List<HorseDto>> getHorses() { // TODO: Get criteria from params
+    public ResponseEntity<Page<HorseDto>> getHorses(
+        Criteria criteria,
+        Pageable pageable
+    ) {
         HorseDtoConversor conversor = new HorseDtoConversor();
-        Criteria criteria = Criteria.builder().build();
 
-        return ResponseEntity.ok(conversor.toHorsesDto(catalogService.getHorses(criteria)));
+        return ResponseEntity.ok(conversor.toHorsesDto(catalogService.getHorses(criteria, pageable)));
     }
 
 }
