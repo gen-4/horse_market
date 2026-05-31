@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import lombok.RequiredArgsConstructor;
@@ -28,14 +31,24 @@ public class CatalogController {
   
     @PostMapping("horse")
     public ResponseEntity<HorseDto> createHorse(
-        @RequestBody HorseDto horseDto
+        @RequestBody HorseDto horseDto,
+        @RequestAttribute long userId
     ) {
         Horse horse;
         HorseDtoConversor conversor = new HorseDtoConversor();
         
-        horse = catalogService.createHorses(conversor.toHorse(horseDto));
+        horse = catalogService.createHorses(userId, conversor.toHorse(horseDto));
         return ResponseEntity.created(URI.create("/horse/" + horse.getId()))
             .body(conversor.toHorseDto(horse));
+    }
+
+    @DeleteMapping("horse/{horseId}")
+    public ResponseEntity<Void> deleteHorse(
+        @PathVariable long horseId,
+        @RequestAttribute long userId
+    ) {
+        catalogService.deleteHorse(horseId, userId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("horses")

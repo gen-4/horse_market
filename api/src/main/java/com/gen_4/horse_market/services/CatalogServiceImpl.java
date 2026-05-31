@@ -1,16 +1,21 @@
 package com.gen_4.horse_market.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import com.gen_4.horse_market.exceptions.NotFoundException;
 import com.gen_4.horse_market.exceptions.ParametersValidationException;
 import com.gen_4.horse_market.models.catalog.Criteria;
 import com.gen_4.horse_market.models.catalog.Horse;
+import com.gen_4.horse_market.models.user.User;
 import com.gen_4.horse_market.repositories.HorseRepository;
+import com.gen_4.horse_market.repositories.UserRepository;
 
 
 @Slf4j
@@ -20,8 +25,17 @@ public class CatalogServiceImpl implements CatalogService {
 
     private final HorseRepository horseRepository;
 
+    private final UserRepository userRepository;
+
     @Override
-    public Horse createHorses(Horse horse) {
+    public Horse createHorses(long userId, Horse horse) {
+        Optional<User> user = userRepository.findById(userId);
+
+        if (!user.isPresent()) {
+            log.error("User not found for id " + userId);
+            throw new NotFoundException("User not found for id " + userId);
+        }
+        horse.setOwner(user.get());
 
         try{
             horseRepository.save(horse);
@@ -34,6 +48,16 @@ public class CatalogServiceImpl implements CatalogService {
         }
 
         return horse;
+    }
+
+    @Transactional
+    @Override
+    public void deleteHorse(long userId, long horseId) {
+        int deleted = horseRepository.deleteByIdAndOwnerId(horseId, userId);
+
+        if (deleted == 0) {
+            throw new NotFoundException("Horse not found for id " + horseId + " and user " + userId);
+        }
     }
   
     @Override
