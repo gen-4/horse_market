@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gen_4.horse_market.dtos.auth.AuthenticationResponseDto;
 import com.gen_4.horse_market.dtos.user.RoleDto;
 import com.gen_4.horse_market.dtos.user.UserDto;
-// import com.gen_4.horse_market.exceptions.DuplicatedEntityException;
-// import com.gen_4.horse_market.exceptions.NotFoundException;
-// import com.gen_4.horse_market.exceptions.UnauthorizedException;
-// import com.gen_4.horse_market.exceptions.WrongParametersException;
 import com.gen_4.horse_market.models.user.User;
 import com.gen_4.horse_market.services.AuthenticationService;
 import com.gen_4.horse_market.configuration.JwtInfo;
@@ -24,6 +20,7 @@ import com.gen_4.horse_market.configuration.JwtService;
 import com.gen_4.horse_market.dtos.auth.AuthenticationRequestDto;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
 @CrossOrigin
@@ -37,8 +34,7 @@ public class AuthContoller {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponseDto> register(
-            @RequestBody AuthenticationRequestDto request) {// throws NotFoundException, WrongParametersException,
-                                                            // DuplicatedEntityException {
+            @RequestBody AuthenticationRequestDto request) {
         User user = authenticationService.register(request.getUsername(), request.getPassword());
 
         return ResponseEntity.ok(AuthenticationResponseDto.builder()
@@ -59,8 +55,7 @@ public class AuthContoller {
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponseDto> login(
-            @RequestBody AuthenticationRequestDto request) {// throws WrongParametersException, NotFoundException,
-                                                            // UnauthorizedException {
+            @RequestBody AuthenticationRequestDto request) {
         User user = authenticationService.login(request.getUsername(), request.getPassword());
 
         return ResponseEntity.ok(AuthenticationResponseDto.builder()
@@ -81,7 +76,6 @@ public class AuthContoller {
 
     @PostMapping("/login-with-token")
     public ResponseEntity<AuthenticationResponseDto> loginWithToken(@RequestAttribute long userId) {
-        // throws NotFoundException, UnauthorizedException {
         User user = authenticationService.loginWithToken(userId);
 
         return ResponseEntity.ok(AuthenticationResponseDto.builder()

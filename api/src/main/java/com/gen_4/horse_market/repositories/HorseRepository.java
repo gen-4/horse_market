@@ -31,13 +31,21 @@ public interface HorseRepository extends JpaRepository<Horse, Long> {
         FROM horse h
         WHERE (:minWeight IS NULL OR h.weight >= :minWeight)
         AND (:maxWeight IS NULL OR h.weight <= :maxWeight)
-        AND (:minHeight IS NULL OR h.weight >= :minHeight)
-        AND (:maxHeight IS NULL OR h.weight <= :maxHeight)
+        AND (:minHeight IS NULL OR h.height >= :minHeight)
+        AND (:maxHeight IS NULL OR h.height <= :maxHeight)
         AND (
             :description IS NULL OR
             to_tsvector('english', h.description)
-            @@ plainto_tsquery('english', :description)
+            @@ websearch_to_tsquery('english', :description)
         )
+        ORDER BY
+            CASE
+                WHEN :description IS NULL THEN 0
+                ELSE ts_rank(
+                    to_tsvector('english', h.description),
+                    websearch_to_tsquery('english', :description)
+                )
+            END DESC
     """,
     nativeQuery = true)
     Page<Horse> search(
