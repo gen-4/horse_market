@@ -83,12 +83,12 @@ public class HorseTests {
         horseRepository.deleteAll();
     }
 
-    @Test
+    /* @Test
     public void getAllHorses() { // TODO: This test is just an example. Remove it when any other is created
         Criteria criteria = Criteria.builder().build();
 
         Page<Horse> horses = catalogService.getHorses(criteria, PageRequest.of(0, 10));
         assertEquals(1, horses.getNumber());
-    }
+    } */
   
 }
