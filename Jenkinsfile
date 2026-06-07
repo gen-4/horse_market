@@ -37,8 +37,6 @@ node {
 	} */
 
 	stage('Deploying horse_market') {
-		dir('/home/hera/scripts') {
-			sh 'restart_composition.sh'
-		}
+		sh '/home/hera/scripts/restart_composition.sh'
 	}
 }
